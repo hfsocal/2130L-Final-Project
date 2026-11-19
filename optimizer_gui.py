@@ -62,8 +62,8 @@ if uploaded_file is not None:
         results_df = pd.DataFrame(results_data)
         st.table(results_df)
 
-
-fig, ax = plt.subplots(figsize=(8, 4))
+        # GRAPH 1: Financial Impact of Repair Strategy
+        fig, ax = plt.subplots(figsize=(8, 4))
 
         metrics = [
             "Maintenance Budget",
@@ -81,13 +81,8 @@ fig, ax = plt.subplots(figsize=(8, 4))
         st.pyplot(fig)
         plt.close(fig)
 
-
-
-
-
-
-
-           csv_export = results_df.to_csv(index=False).encode("utf-8")
+        # CSV EXPORT
+        csv_export = results_df.to_csv(index=False).encode("utf-8")
 
         st.download_button(
             label="Download Repair Plan as CSV",
@@ -96,8 +91,8 @@ fig, ax = plt.subplots(figsize=(8, 4))
             mime="text/csv"
         )
 
-
-st.write("---")
+    # GRAPH 2: Budget Scenario Comparison
+    st.write("---")
     st.subheader("Budget Scenario Comparison")
 
     budgets = list(range(0, int(max_possible_cost) + 1, 500))
@@ -124,12 +119,4 @@ st.write("---")
 
     st.pyplot(fig2)
     plt.close(fig2)
-
-
-
-
-# In[ ]:
-
-
-
 
