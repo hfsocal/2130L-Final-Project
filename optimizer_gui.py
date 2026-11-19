@@ -111,11 +111,38 @@ if uploaded_file is not None:
 
     fig2, ax2 = plt.subplots(figsize=(8, 4))
 
-    ax2.plot(budgets, recovery_values, marker='o')
+
+    # Plot production recovery across all budgets
+    ax2.plot(
+        budgets,
+        recovery_values,
+        marker='o',
+        label="Potential Production Recovery"
+    )
+
+    # Highlight the currently selected budget
+    ax2.scatter(
+        budget,
+        recovered_value,
+        color='red',
+        s=120,
+        zorder=5,
+        label="Current Budget"
+    )
+
+    # Add a vertical line at the selected budget
+    ax2.axvline(
+        x=budget,
+        color='red',
+        linestyle='--',
+        alpha=0.6
+    )
+
     ax2.set_xlabel("Maintenance Budget ($)")
     ax2.set_ylabel("Production Value Restored ($)")
     ax2.set_title("Budget vs. Production Recovery")
     ax2.grid(True)
+    ax2.legend()
 
     st.pyplot(fig2)
     plt.close(fig2)
